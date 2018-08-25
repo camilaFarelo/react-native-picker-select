@@ -64,6 +64,7 @@ export default class RNPickerSelect extends PureComponent {
         onUpArrow: PropTypes.func,
         onDownArrow: PropTypes.func,
         doneText: PropTypes.string,
+        onShowPicker: PropTypes.func,
     };
 
     static defaultProps = {
@@ -170,6 +171,9 @@ export default class RNPickerSelect extends PureComponent {
     togglePicker(animate = false) {
         if (this.props.disabled) {
             return;
+        }
+        if (this.props.onShowPicker) {
+          this.props.onShowPicker(!this.state.showPicker);
         }
         this.setState({
             animationType: animate ? this.props.animationType : undefined,
